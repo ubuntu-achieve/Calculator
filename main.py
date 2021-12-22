@@ -127,25 +127,25 @@ class Form(QWidget, Ui_Form):
 
     def pb_sin(self):
         self.lineput = 'sin(' + self.lineput +')'
-        self.string = self.lineput
+        self.string = self.lineput.replace('sqrt', '√')
         self.textBrowser.clear()
         self.textBrowser.append(self.string)
     
     def pb_cos(self):
         self.lineput = 'cos(' + self.lineput +')'
-        self.string = self.lineput
+        self.string = self.lineput.replace('sqrt', '√')
         self.textBrowser.clear()
         self.textBrowser.append(self.string)
 
     def pb_tan(self):
         self.lineput = 'tan(' + self.lineput +')'
-        self.string = self.lineput
+        self.string = self.lineput.replace('sqrt', '√')
         self.textBrowser.clear()
         self.textBrowser.append(self.string)
 
     def pb_ln(self):
         self.lineput = 'ln(' + self.lineput +')'
-        self.string = self.lineput
+        self.string = self.lineput.replace('sqrt', '√')
         self.textBrowser.clear()
         self.textBrowser.append(self.string)
 

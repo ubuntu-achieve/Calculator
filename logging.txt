@@ -1,2 +1,2 @@
 2.7182818284590458**6=403.4287934927358
-出现错误：unexpected EOF while parsing (<string>, line 1),请确保输入正确的式子出现错误：division by zero,请确保输入正确的式子
+出现错误：unexpected EOF while parsing (<string>, line 1),请确保输入正确的式子出现错误：division by zero,请确保输入正确的式子出现错误：invalid syntax (<string>, line 1),请确保输入正确的式子
