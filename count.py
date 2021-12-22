@@ -34,7 +34,7 @@ def kh(string):
                     pivot = -1
             kh[pivot] = i
     try:
-        if len(kh) == 0:  # 判断有没有右括号000
+        if len(kh) == 0:  # 判断有没有右括号
             return "存在括号不匹配！"
         elif kh[len(string) - 1] == -1:  # 判断在存在右括号的前提下，最后一位有没有括号不匹配的情况
             return "存在括号不匹配！"
