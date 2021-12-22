@@ -60,6 +60,7 @@ class Ui_Form(object):
         self.textBrowser.setObjectName("textBrowser")
         self.textBrowser.setFont(font)
         self.gridLayout.addWidget(self.textBrowser, 0, 0, 2, 4)
+        self.textBrowser.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.textBrowser.setStyleSheet(u"QWidget {\n"
         "background-color:rgb(210,210,212,58%);\n"
         "border-radius: 10px;\n"

@@ -6,10 +6,10 @@ from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow
 
 
 class Form(QWidget, Ui_Form):
-    string = ''
-    lineput = ''
+    string = ''  # 用于存放给用户展示的字符串
+    lineput = ''  # 用于存放计算用的字符串
     def __init__(self):
-        super(Form, self).__init__()
+        super(Form, self).__init__()  # 继承父类的init方法
         self.setupUi(self)
     def pb_0(self):
         self.lineput += '0'
@@ -162,21 +162,26 @@ class Form(QWidget, Ui_Form):
         self.textBrowser.append(self.string)
     
     def pb_back(self):
-        if len(self.string) == 0:
+        if len(self.string) == 0:  # 如果是空串就不执行退格操作
             pass
         elif self.string[-1] == ')':
             kh = count.kh(self.string)
-            l = [i for i in self.string]
-            if self.string[kh[1] - 1] == 'n' and self.string[kh[1] - 2] == 'l':
-                l.pop(kh[0]);l.pop(kh[1]-2);l.pop(kh[1]-2);l.pop(kh[1]-2)
-            elif self.string[kh[1] - 1] == 'n' or self.string[kh[1] - 1] == 's':
-                l.pop(kh[0]);l.pop(kh[1]-3);l.pop(kh[1]-3);l.pop(kh[1]-3);l.pop(kh[1]-3)
-            elif self.string[kh[1] - 1] == '√':
-                l.pop(kh[0]);l.pop(kh[1]-1);l.pop(kh[1]-1)
-            else:
-                l.pop()          
-            self.string = ''.join(l)
-            self.string.replace('tan','').replace('cos','').replace('sin','').replace('ln','').replace('√','')
+            if type(kh) != type((1,2)):  # 判断返回的是否为字符串，若是则说明括号不匹配
+                l = [i for i in self.string]
+                l.pop()  # 若不匹配则只删去最后一个
+                self.string = ''.join(l)
+            else:  # 若不是字符串，则说明括号匹配
+                l = [i for i in self.string]
+                if len(self.string) >= 4 and self.string[kh[1] - 1] == 'n' and self.string[kh[1] - 2] == 'l':  # 判断要退格的函数是否为ln
+                    l.pop();del l[kh[1] - 2:kh[1] + 1]
+                elif len(self.string) >= 5 and self.string[kh[1] - 1] == 'n' or self.string[kh[1] - 1] == 's':  # 判断要退格的函数是否为sin、cos、tan
+                    l.pop();del l[kh[1] - 3:kh[1] + 1]
+                elif len(self.string) >= 3 and self.string[kh[1] - 1] == '√':  # 判断要退格的函数是否为根号
+                    l.pop();del l[kh[1] - 1:kh[1] + 1]
+                else:
+                    l.pop()          
+                self.string = ''.join(l)
+                self.string.replace('tan','').replace('cos','').replace('sin','').replace('ln','').replace('√','')
         else:
             l = [i for i in self.string]
             l.pop()
@@ -200,7 +205,7 @@ class Form(QWidget, Ui_Form):
                 try:
                     fun, answer = count.Fun(self.lineput)
                     self.string = self.string + '=' + str(answer)
-                    f.write(f"{fun}={answer}\n")
+                    f.write(f"{fun}={answer}\n")  # 存入每次计算的日志
                     self.textBrowser.clear()
                     self.textBrowser.append(self.string)
                     self.string = ''
@@ -209,7 +214,7 @@ class Form(QWidget, Ui_Form):
                     print(1,fault)
                     self.textBrowser.clear()
                     self.textBrowser.append(f"出现错误：{fault},请确保输入正确的式子")
-                    f.write(f"出现错误：{fault},请确保输入正确的式子")
+                    f.write(f"出现错误：{fault},请确保输入正确的式子")  # 存入每次报错的日志
                     self.string = ''
                     self.lineput = ''
                 
