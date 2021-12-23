@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 
 def Pi():
     return np.pi
@@ -46,6 +47,22 @@ def Fun(string):
     string = chuli(string)
     answer = eval(string)
     return string,answer
+
+def drow(string):
+    plt.clf()
+    plt.grid()
+    x = np.arange(-2*Pi(),2*Pi(), 0.1)
+    try:
+        y = eval(chuli(string))
+    except BaseException as falut:
+        return f"表达式发生错误{falut}，请确保输入正确！" 
+    try:
+        if type(y) == type(1) or type(y) == type(1.):  # 判断输入的表达式是不是常数表达式
+            plt.plot(x, np.array([y for i in x]))
+        else:
+            plt.plot(x,y)
+    except BaseException as falut:
+        return f"绘图发生错误{falut}，请确保输入正确表达式！" 
 
 if __name__ == "__main__":
     print("请勿使用！")
