@@ -278,7 +278,7 @@ class Form(QWidget, Ui_Form):
                     print(1,fault)
                     self.textBrowser1.clear()
                     self.textBrowser1.append(f"出现错误：{fault},请确保输入正确的式子")
-                    f.write(f"出现错误：{fault},请确保输入正确的式子")  # 存入每次报错的日志
+                    f.write(f"出现错误：{fault},请确保输入正确的式子\n")  # 存入每次报错的日志
                     self.string = ''
                     self.lineput = ''
                 
