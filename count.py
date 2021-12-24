@@ -57,7 +57,7 @@ def drow(string):
     except BaseException as falut:
         return f"表达式发生错误{falut}，请确保输入正确！" 
     try:
-        if type(y) == type(1) or type(y) == type(1.):  # 判断输入的表达式是不是常数表达式
+        if type(y) == type(1) or type(y) == type(1.) or type(y) == type(sqrt(21)):  # 判断输入的表达式是不是常数表达式
             plt.plot(x, np.array([y for i in x]))
         else:
             plt.plot(x,y)

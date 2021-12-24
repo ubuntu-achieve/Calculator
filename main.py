@@ -291,7 +291,7 @@ class Form(QWidget, Ui_Form):
         self.textBrowser2.clear()
         self.textBrowser2.append(self.string)
         self.plot_()
-        
+
 
     def plot_(self):  # 绘图
         if self.fx == 0:
