@@ -1,10 +1,6 @@
 import sys
-
-from numpy.lib.function_base import select
 import count
-import numpy as np
 from GUI import Ui_Form
-import matplotlib.pyplot as plt
 from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow
 
 
