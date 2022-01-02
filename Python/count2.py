@@ -25,9 +25,7 @@ class BigNumber:
             return self.num
     def __add__(self, other):  # 重载加法
         try:
-            self._bignumber.out_add(c_char_p(bytes((self.check()), 'utf-8')), c_char_p(bytes((other.check()), 'utf-8')))
-            with open("./data.txt", 'r') as file:
-                answer1 = file.read()
+            answer1 = self._bignumber.out_add(c_char_p(bytes((self.check()), 'utf-8')), c_char_p(bytes((other.check()), 'utf-8')))
         except BaseException as fault1:
             print(f"答案读取失败,出现错误:{fault1}\n正在尝试重新生成答案...")
         try:
@@ -40,9 +38,7 @@ class BigNumber:
         return answer
     def __sub__(self, other):  # 重载减法
         try:
-            self._bignumber.out_minus(c_char_p(bytes((self.check()), 'utf-8')), c_char_p(bytes((other.check()), 'utf-8')))
-            with open("./data.txt", 'r') as file:
-                answer1 = file.read()
+            answer1 = self._bignumber.out_minus(c_char_p(bytes((self.check()), 'utf-8')), c_char_p(bytes((other.check()), 'utf-8')))
         except BaseException as fault1:
             answer1 = 0
             print(f"答案读取失败,出现错误:{fault1}\n正在尝试重新生成答案...")
@@ -56,9 +52,7 @@ class BigNumber:
         return answer
     def __mul__(self, other):  # 重载乘法
         try:
-            self._bignumber.out_times(c_char_p(bytes((self.check()), 'utf-8')), c_char_p(bytes((other.check()), 'utf-8')))
-            with open("./data.txt", 'r') as file:
-                answer1 = file.read()
+            answer1 = self._bignumber.out_times(c_char_p(bytes((self.check()), 'utf-8')), c_char_p(bytes((other.check()), 'utf-8')))
         except BaseException as fault1:
             answer1 = 0
             print(f"答案读取失败,出现错误:{fault1}\n正在尝试重新生成答案...")
@@ -73,9 +67,7 @@ class BigNumber:
         return answer
     def __truediv__(self, other):  # 重载实数除法
         try:
-            self._bignumber.out_div(c_char_p(bytes((self.check()), 'utf-8')), c_char_p(bytes((other.check()), 'utf-8')))
-            with open("./data.txt", 'r') as file:
-                answer1 = file.read()
+            answer1 = self._bignumber.out_div(c_char_p(bytes((self.check()), 'utf-8')), c_char_p(bytes((other.check()), 'utf-8')))
         except BaseException as fault1:
             answer1 = 0
             print(f"答案读取失败,出现错误:{fault1}\n正在尝试重新生成答案...")
@@ -90,9 +82,7 @@ class BigNumber:
 
     def __pow__(self, power):
         try:
-            self._bignumber.out_pow(c_char_p(bytes((self.check()), 'utf-8')), c_int(int(power.num)))
-            with open("./data.txt", 'r') as file:
-                answer1 = file.read()
+            answer1 = self._bignumber.out_pow(c_char_p(bytes((self.check()), 'utf-8')), c_int(int(power.num)))
         except BaseException as fault1:
             answer1 = 0
             print(f"答案读取失败,出现错误:{fault1}\n正在尝试重新生成答案...")
@@ -192,6 +182,6 @@ def drow(string):
         return f"绘图发生错误{falut}，请确保输入正确表达式！" 
 
 if __name__ == "__main__":
-    print('tan(123)+345÷345-123123×890 + π + 2^3=', Fun("tan(123)+345÷345-123123×890+π+2^3"))
-    print(type(Fun("tan(123)+345÷345-123123×890+π")[1]))
+    print('Tan(123)+345÷345-123123×890 + π + 2^3=', Fun("Tan(123)+345÷345-123123×890+π+2^3"))
+    print(type(Fun("Tan(123)+345÷345-123123×890+π")[1]))
     pass
