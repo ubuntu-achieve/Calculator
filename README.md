@@ -19,7 +19,19 @@
 
 ## 预览
 
-- version_2![image-1](./image-1.png)
-- version_3![image-2](./image-2.png)!![image-3](./image-3.png)
-- version_beta_3!![image-2](./image-2.png)!![image-3](./image-3.png)
-- ![image-20220102165700823](E:\文件\Typora文件\图片存放\image-20220102165700823.png)
+- version_2
+
+  ![image-1](image-1.png)
+  
+- version_3
+
+  ![image-2](image-2.png)
+
+  ![image-3](./image-3.png)
+
+- version_beta_3
+
+  ![image-4](./image-2.png)
+  ![image-5](image-3.png)
+
+  
