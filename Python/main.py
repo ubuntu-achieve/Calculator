@@ -1,7 +1,7 @@
-import sys
+from sys import argv, exit
 import count2
 from GUI import Ui_Form
-from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow
+from PyQt5.QtWidgets import QApplication, QWidget
 
 
 
@@ -147,51 +147,51 @@ class Form(QWidget, Ui_Form):
 
     def pb_sin(self):
         if self.fx == 1:
-            self.lineput = 'sin(' + self.lineput +')'
-            self.string = 'F(x)=' + self.lineput.replace('sqrt', '√')
+            self.lineput = 'Sin(' + self.lineput +')'
+            self.string = 'F(x)=' + self.lineput.replace('Sqrt', '√')
         else:
-            self.lineput = 'sin(' + self.lineput +')'
-            self.string = self.lineput.replace('sqrt', '√')
+            self.lineput = 'Sin(' + self.lineput +')'
+            self.string = self.lineput.replace('Sqrt', '√')
         self.textBrowser1.clear()
         self.textBrowser1.append(self.string)
 
     def pb_cos(self):
         if self.fx == 1:
-            self.lineput = 'cos(' + self.lineput +')'
-            self.string = 'F(x)=' + self.lineput.replace('sqrt', '√')
+            self.lineput = 'Cos(' + self.lineput +')'
+            self.string = 'F(x)=' + self.lineput.replace('Sqrt', '√')
         else:
-            self.lineput = 'cos(' + self.lineput +')'
-            self.string = self.lineput.replace('sqrt', '√')
+            self.lineput = 'Cos(' + self.lineput +')'
+            self.string = self.lineput.replace('Sqrt', '√')
         self.textBrowser1.clear()
         self.textBrowser1.append(self.string)
 
     def pb_tan(self):
         if self.fx == 1:
-            self.lineput = 'tan(' + self.lineput +')'
-            self.string = 'F(x)=' + self.lineput.replace('sqrt', '√')
+            self.lineput = 'Tan(' + self.lineput +')'
+            self.string = 'F(x)=' + self.lineput.replace('Sqrt', '√')
         else:
-            self.lineput = 'tan(' + self.lineput +')'
-            self.string = self.lineput.replace('sqrt', '√')
+            self.lineput = 'Tan(' + self.lineput +')'
+            self.string = self.lineput.replace('Sqrt', '√')
         self.textBrowser1.clear()
         self.textBrowser1.append(self.string)
 
     def pb_ln(self):
         if self.fx == 1:
             self.lineput = 'ln(' + self.lineput +')'
-            self.string = 'F(x)=' + self.lineput.replace('sqrt', '√')
+            self.string = 'F(x)=' + self.lineput.replace('Sqrt', '√')
         else:
             self.lineput = 'ln(' + self.lineput +')'
-            self.string = self.lineput.replace('sqrt', '√')
+            self.string = self.lineput.replace('Sqrt', '√')
         self.textBrowser1.clear()
         self.textBrowser1.append(self.string)
 
     def pb_sqrt(self):
         if self.fx == 1:
-            self.lineput = 'sqrt(' + self.lineput +')'
-            self.string = 'F(x)=' + self.lineput.replace('sqrt', '√')
+            self.lineput = 'Sqrt(' + self.lineput +')'
+            self.string = 'F(x)=' + self.lineput.replace('Sqrt', '√')
         else:
             self.string = '√(' + self.string + ')'
-            self.lineput = 'sqrt(' + self.lineput +')'
+            self.lineput = 'Sqrt(' + self.lineput +')'
         self.textBrowser1.clear()
         self.textBrowser1.append(self.string)
 
@@ -309,7 +309,7 @@ class Form(QWidget, Ui_Form):
     # retranslateUi
 
 
-app = QApplication(sys.argv)
+app = QApplication(argv)
 window = Form()
 window.pushButton_0.clicked.connect(window.pb_0)
 window.pushButton_1.clicked.connect(window.pb_1)
@@ -345,4 +345,4 @@ window.pushButton_change1.clicked.connect(window.change1)
 window.pushButton_change2.clicked.connect(window.change2)
 
 window.show()
-sys.exit(app.exec_())
+exit(app.exec_())

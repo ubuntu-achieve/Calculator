@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 #主要的思路就是创建两个frame（如果有两个以上同理）使用setVisible()函数显示或者隐藏frame 参数是bool值<br>import sys
 import sys
-import matplotlib
-matplotlib.use('Qt5Agg')
-import matplotlib.pyplot as plt
+from matplotlib import use
+use('Qt5Agg')
+from matplotlib.pyplot import figure
 from PyQt5 import QtCore, QtWidgets,QtGui
 # 使用 matplotlib中的FigureCanvas (在使用 Qt5 Backends中 FigureCanvas继承自QtWidgets.QWidget)
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
@@ -786,7 +786,7 @@ class Ui_Form(object):
         "}"
         )
 
-        self.figure = plt.figure()
+        self.figure = figure()
         
         self.canvas = FigureCanvas(self.figure)
         # 设置布局

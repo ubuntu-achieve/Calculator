@@ -1,18 +1,11 @@
 import ctypes
-import numpy as np
-import matplotlib.pyplot as plt
-#bignumber = ctypes.CDLL("counter")
-#bignumber.add.restype = ctypes.c_char_p
-#str1 = ctypes.c_char_p(bytes("223", 'utf-8'))
-#str2 = ctypes.c_char_p(bytes("2234234", 'utf-8'))
-#a = bignumber.out_minus(str1, str2)
-'''with open("./data.txt", 'r') as f:
-    print(f.read())'''
+from numpy import pi, e, tan, cos, sin, log, sqrt, arange, array
+from matplotlib.pyplot import clf, plot, grid
 
 def Pi():
-    return np.pi
+    return pi
 def E():
-    return np.e
+    return e
 class BigNumber:
     _bignumber = ctypes.CDLL("counter")
     def __init__(self, num):
@@ -31,8 +24,8 @@ class BigNumber:
         else:
             return self.num
     def __add__(self, other):  # 重载加法
-        self._bignumber.out_add(ctypes.c_char_p(bytes((self.check()), 'utf-8')), ctypes.c_char_p(bytes((other.check()), 'utf-8')))
         try:
+            self._bignumber.out_add(ctypes.c_char_p(bytes((self.check()), 'utf-8')), ctypes.c_char_p(bytes((other.check()), 'utf-8')))
             with open("./data.txt", 'r') as file:
                 answer1 = file.read()
         except BaseException as fault1:
@@ -40,12 +33,14 @@ class BigNumber:
         try:
             answer2 = str(eval(self.num + "+" + other.num))
         except BaseException as fault2:
+            answer = 0
             print(f"生成答案失败,出现错误:{fault2}")
+            raise BaseException('Wrong expression')
         answer = BigNumber(answer1 if answer1 == answer2 else answer2)
         return answer
     def __sub__(self, other):  # 重载减法
-        self._bignumber.out_minus(ctypes.c_char_p(bytes((self.check()), 'utf-8')), ctypes.c_char_p(bytes((other.check()), 'utf-8')))
         try:
+            self._bignumber.out_minus(ctypes.c_char_p(bytes((self.check()), 'utf-8')), ctypes.c_char_p(bytes((other.check()), 'utf-8')))
             with open("./data.txt", 'r') as file:
                 answer1 = file.read()
         except BaseException as fault1:
@@ -56,26 +51,29 @@ class BigNumber:
         except BaseException as fault2:
             answer2 = 0
             print(f"生成答案失败,出现错误:{fault2}")
+            raise BaseException('Wrong expression')
         answer = BigNumber(answer1 if answer1 == answer2 else answer2)
         return answer
     def __mul__(self, other):  # 重载乘法
-        self._bignumber.out_times(ctypes.c_char_p(bytes((self.check()), 'utf-8')), ctypes.c_char_p(bytes((other.check()), 'utf-8')))
         try:
+            self._bignumber.out_times(ctypes.c_char_p(bytes((self.check()), 'utf-8')), ctypes.c_char_p(bytes((other.check()), 'utf-8')))
             with open("./data.txt", 'r') as file:
                 answer1 = file.read()
         except BaseException as fault1:
             answer1 = 0
             print(f"答案读取失败,出现错误:{fault1}\n正在尝试重新生成答案...")
+            raise BaseException('Wrong expression')
         try:
             answer2 = str(eval(self.num + "*" + other.num))
         except BaseException as fault2:
             answer2 = 0
             print(f"生成答案失败,出现错误:{fault2}")
+            raise BaseException('Wrong expression')
         answer = BigNumber(answer1 if answer1 == answer2 else answer2)
         return answer
     def __truediv__(self, other):  # 重载实数除法
-        self._bignumber.out_div(ctypes.c_char_p(bytes((self.check()), 'utf-8')), ctypes.c_char_p(bytes((other.check()), 'utf-8')))
         try:
+            self._bignumber.out_div(ctypes.c_char_p(bytes((self.check()), 'utf-8')), ctypes.c_char_p(bytes((other.check()), 'utf-8')))
             with open("./data.txt", 'r') as file:
                 answer1 = file.read()
         except BaseException as fault1:
@@ -86,12 +84,13 @@ class BigNumber:
         except BaseException as fault2:
             answer2 = 0
             print(f"生成答案失败,出现错误:{fault2}")
+            raise BaseException('Wrong expression')
         answer = BigNumber(answer1 if answer1 == answer2 else answer2)
         return answer
 
     def __pow__(self, power):
-        self._bignumber.out_pow(ctypes.c_char_p(bytes((self.check()), 'utf-8')), ctypes.c_int(int(power.num)))
         try:
+            self._bignumber.out_pow(ctypes.c_char_p(bytes((self.check()), 'utf-8')), ctypes.c_int(int(power.num)))
             with open("./data.txt", 'r') as file:
                 answer1 = file.read()
         except BaseException as fault1:
@@ -102,18 +101,19 @@ class BigNumber:
         except BaseException as fault2:
             answer2 = 0
             print(f"生成答案失败,出现错误:{fault2}")
+            raise BaseException('Wrong expression')
         answer = BigNumber(answer1 if answer1 == answer2 else answer2)
         return answer
-def tan(x):
-    return BigNumber(str(np.tan(eval(x.num))))
-def sin(x):
-    return BigNumber(str(np.sin(eval(x.num))))
-def cos(x):
-    return BigNumber(str(np.cos(eval(x.num))))
+def Tan(x):
+    return BigNumber(str(tan(eval(x.num))))
+def Sin(x):
+    return BigNumber(str(sin(eval(x.num))))
+def Cos(x):
+    return BigNumber(str(cos(eval(x.num))))
 def ln(x):
-    return BigNumber(str(np.log(eval(x.num))))
-def sqrt(x):
-    return BigNumber(str(np.sqrt(eval(x.num))))
+    return BigNumber(str(log(eval(x.num))))
+def Sqrt(x):
+    return BigNumber(str(sqrt(eval(x.num))))
 
 def kh(string):
     kh = {}
@@ -176,18 +176,18 @@ def chuli2(string):
     return string
 
 def drow(string):
-    plt.clf()
-    plt.grid()
-    x = np.arange(-2*Pi(),2*Pi(), 0.1)
+    clf()
+    grid()
+    x = arange(-2*Pi(),2*Pi(), 0.1)
     try:
         y = eval(chuli2(string))
     except BaseException as falut:
         return f"表达式发生错误{falut}，请确保输入正确！" 
     try:
-        if type(y) == int or type(y) == float or type(y) == type(sqrt(BigNumber(21))):  # 判断输入的表达式是不是常数表达式
-            plt.plot(x, np.array([y for i in x]))
+        if type(y) == int or type(y) == float or type(y) == type(Sqrt(BigNumber(21))):  # 判断输入的表达式是不是常数表达式
+            plot(x, array([y for i in x]))
         else:
-            plt.plot(x,y)
+            plot(x,y)
     except BaseException as falut:
         return f"绘图发生错误{falut}，请确保输入正确表达式！" 
 

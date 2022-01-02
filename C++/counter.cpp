@@ -88,10 +88,6 @@ BigNumber BigNumber::subtract(BigNumber other) {
 		}
 		return BigNumber(t);
 	}
-
-	//This next if-block fixes the case where the digit difference is greater than 1
-	//100 - 5 is an example. This code adds 0's to make it, for example, 100 - 05, which
-	//allows the rest of the subtraction code to work.
 	if (b1._numberString.size() - b2.getString().size() > 1) {
 		for (unsigned long i = 0; i < b1._numberString.size() - b2.getString().size() - 1; ++i) {
 			b2._numberString.insert(b2._numberString.begin(), '0');
@@ -170,7 +166,7 @@ BigNumber BigNumber::subtract(BigNumber other) {
 
 		--i;
 	}
-	//In the case of all 0's, we only want to return one of them
+	//如果全是0就只返回一个
 	if (results.find_first_not_of('0') == std::string::npos) {
 		results = "0";
 	}
@@ -236,7 +232,7 @@ BigNumber BigNumber::multiply(BigNumber other) {
 		b.setString(b._numberString.erase(0, b._numberString.find_first_not_of('0')));
 	}
 	else {
-		//In the case of all 0's, we only want to return one of them
+		//如果全是0就只返回一个
 		b.setString("0");
 	}
 	return b;
@@ -261,6 +257,7 @@ BigNumber BigNumber::multiplystr(const std::string &other) {
 BigNumber BigNumber::divide(BigNumber other) {
 	if (other == 0) {
 		std::cerr << "You cannot divide by 0!" << std::endl;
+		return BigNumber('0');
 	}
 	BigNumber b1 = *this, b2 = other;
 	bool sign = false;
@@ -592,7 +589,7 @@ BigNumber BigNumber::operator--(int) {
 }
 
 
-extern"C" __declspec(dllexport) bool wfile(std::string answer) {
+bool wfile(std::string answer) {
 	std::ofstream outfile;//输出流
 	outfile.open("./data.txt", std::ios::trunc);
 	if (!outfile.is_open())return false;
