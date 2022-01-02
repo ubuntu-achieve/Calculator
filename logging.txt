@@ -1,1 +1,5 @@
 出现错误：Wrong expression,请确保输入正确的式子
+9*9=81
+9^0=1
+出现错误：invalid syntax (<string>, line 1),请确保输入正确的式子
+出现错误：bad operand type for unary -: 'BigNumber',请确保输入正确的式子

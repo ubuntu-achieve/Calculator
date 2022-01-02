@@ -1,4 +1,4 @@
-import ctypes
+from ctypes import CDLL, c_char_p, c_int
 from numpy import pi, e, tan, cos, sin, log, sqrt, arange, array
 from matplotlib.pyplot import clf, plot, grid
 
@@ -7,7 +7,7 @@ def Pi():
 def E():
     return e
 class BigNumber:
-    _bignumber = ctypes.CDLL("counter")
+    _bignumber = CDLL("counter")
     def __init__(self, num):
         self.num = str(num)
     def __str__(self):
@@ -25,7 +25,7 @@ class BigNumber:
             return self.num
     def __add__(self, other):  # 重载加法
         try:
-            self._bignumber.out_add(ctypes.c_char_p(bytes((self.check()), 'utf-8')), ctypes.c_char_p(bytes((other.check()), 'utf-8')))
+            self._bignumber.out_add(c_char_p(bytes((self.check()), 'utf-8')), c_char_p(bytes((other.check()), 'utf-8')))
             with open("./data.txt", 'r') as file:
                 answer1 = file.read()
         except BaseException as fault1:
@@ -40,7 +40,7 @@ class BigNumber:
         return answer
     def __sub__(self, other):  # 重载减法
         try:
-            self._bignumber.out_minus(ctypes.c_char_p(bytes((self.check()), 'utf-8')), ctypes.c_char_p(bytes((other.check()), 'utf-8')))
+            self._bignumber.out_minus(c_char_p(bytes((self.check()), 'utf-8')), c_char_p(bytes((other.check()), 'utf-8')))
             with open("./data.txt", 'r') as file:
                 answer1 = file.read()
         except BaseException as fault1:
@@ -56,7 +56,7 @@ class BigNumber:
         return answer
     def __mul__(self, other):  # 重载乘法
         try:
-            self._bignumber.out_times(ctypes.c_char_p(bytes((self.check()), 'utf-8')), ctypes.c_char_p(bytes((other.check()), 'utf-8')))
+            self._bignumber.out_times(c_char_p(bytes((self.check()), 'utf-8')), c_char_p(bytes((other.check()), 'utf-8')))
             with open("./data.txt", 'r') as file:
                 answer1 = file.read()
         except BaseException as fault1:
@@ -73,7 +73,7 @@ class BigNumber:
         return answer
     def __truediv__(self, other):  # 重载实数除法
         try:
-            self._bignumber.out_div(ctypes.c_char_p(bytes((self.check()), 'utf-8')), ctypes.c_char_p(bytes((other.check()), 'utf-8')))
+            self._bignumber.out_div(c_char_p(bytes((self.check()), 'utf-8')), c_char_p(bytes((other.check()), 'utf-8')))
             with open("./data.txt", 'r') as file:
                 answer1 = file.read()
         except BaseException as fault1:
@@ -90,7 +90,7 @@ class BigNumber:
 
     def __pow__(self, power):
         try:
-            self._bignumber.out_pow(ctypes.c_char_p(bytes((self.check()), 'utf-8')), ctypes.c_int(int(power.num)))
+            self._bignumber.out_pow(c_char_p(bytes((self.check()), 'utf-8')), c_int(int(power.num)))
             with open("./data.txt", 'r') as file:
                 answer1 = file.read()
         except BaseException as fault1:
